@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Operação Resgate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { max-width: 600px; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 p-4 bg-white rounded shadow">
+        <h1 class="text-center mb-4">Cadastro Operação Resgate</h1>
+        <form action="php/cadastrar.php" method="POST" autocomplete="off" id="formCadastro">
+            <!-- Nome Completo -->
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+
+            <!-- Idade -->
+            <div class="mb-3">
+                <label for="idade" class="form-label">Idade</label>
+                <input type="number" class="form-control" id="idade" name="idade" min="1" required>
+            </div>
+
+            <!-- Membro da PIBI -->
+            <div class="mb-3">
+                <label class="form-label">É membro da PIBI?</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="membro_pibi" id="pibi_sim" value="SIM" required>
+                        <label class="form-check-label" for="pibi_sim">SIM</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="membro_pibi" id="pibi_nao" value="NÃO">
+                        <label class="form-check-label" for="pibi_nao">NÃO</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Já trabalhou na Operação Resgate -->
+            <div class="mb-3">
+                <label class="form-label">Já trabalhou na Operação Resgate antes?</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="trabalhou_resgate" id="resgate_sim" value="SIM" required>
+                        <label class="form-check-label" for="resgate_sim">SIM</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="trabalhou_resgate" id="resgate_nao" value="NÃO">
+                        <label class="form-check-label" for="resgate_nao">NÃO</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipe -->
+            <div class="mb-3">
+                <label for="equipe" class="form-label">Em que equipe gostaria de atuar?</label>
+                <select class="form-select" id="equipe" name="equipe" required>
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="ATORES">Atores</option>
+                    <option value="FIGURINO">Figurino</option>
+                    <option value="MAQUIAGEM">Maquiagem</option>
+                </select>
+            </div>
+
+            <!-- Batizado -->
+            <div class="mb-3">
+                <label class="form-label">É batizado?</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="batizado" id="batizado_sim" value="SIM" required>
+                        <label class="form-check-label" for="batizado_sim">SIM</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="batizado" id="batizado_nao" value="NÃO">
+                        <label class="form-check-label" for="batizado_nao">NÃO</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Telefone (com máscara JavaScript) -->
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone de Contato</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(XX)XXXXX-XXXX" required>
+            </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                    </form>
+                </div>
+
+                <script>
+    // Máscara para telefone
+    document.getElementById('telefone').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.substring(0, 11);
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1)$2-$3');
+        e.target.value = value;
+    });
+
+    // Limitar idade a 2 dígitos
+    document.getElementById('idade').addEventListener('input', function(e) {
+        if (this.value.length > 2) this.value = this.value.slice(0, 2);
+    });
+</script>
+
+<!-- Adicione este script ANTES do </body> -->
+<script>
+    // Limpa os campos quando a página é carregada
+    window.onload = function() {
+        document.getElementById('formCadastro').reset(); // Reseta o formulário
+    };
+</script>
+
+</body>
+</html>
