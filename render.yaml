@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: cadastro-pibi
+    runtime: php
+    startCommand: php -S 0.0.0.0:10000
